@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open Portfolio (Local Server)",
+            "url": "http://localhost:8080/index.html",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "Start Local Server"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open Portfolio (Direct File)",
+            "file": "${workspaceFolder}/index.html"
+        }
+    ]
+}
