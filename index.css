@@ -6,16 +6,32 @@
 }
 
 :root {
-    --bg-dark: #0b0b0f;
+    --page-bg: #0b0b0f;
     --bg-card: #13131a;
-    --bg-card-hover: #1a1a24;
     --cyan: #0ef;
     --cyan-dim: rgba(0, 238, 255, 0.15);
     --cyan-glow: rgba(0, 238, 255, 0.4);
-    --text-white: #ffffff;
+    --text: #ffffff;
     --text-gray: #a0a0b0;
     --border: #2a2a35;
+    --header-bg: rgba(11, 11, 15, 0.88);
+    --input-bg: #0b0b0f;
+    --btn-fg: #0b0b0f;
     --font: 'Poppins', sans-serif;
+}
+
+html[data-theme="light"] {
+    --page-bg: #f4f4f6;
+    --bg-card: #ffffff;
+    --cyan: #0a7a8a;
+    --cyan-dim: rgba(10, 122, 138, 0.12);
+    --cyan-glow: rgba(10, 122, 138, 0.28);
+    --text: #16161c;
+    --text-gray: #5c5c6a;
+    --border: #dddde4;
+    --header-bg: rgba(255, 255, 255, 0.92);
+    --input-bg: #f4f4f6;
+    --btn-fg: #ffffff;
 }
 
 html {
@@ -24,10 +40,11 @@ html {
 
 body {
     font-family: var(--font);
-    background: var(--bg-dark);
-    color: var(--text-white);
+    background: var(--page-bg);
+    color: var(--text);
     line-height: 1.7;
     overflow-x: hidden;
+    transition: background 0.25s, color 0.25s;
 }
 
 .cyan {
@@ -45,14 +62,14 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 22px 8%;
-    background: rgba(11, 11, 15, 0.92);
+    background: var(--header-bg);
     backdrop-filter: blur(10px);
 }
 
 .logo {
     font-size: 1.6rem;
     font-weight: 700;
-    color: var(--text-white);
+    color: var(--text);
     text-decoration: none;
 }
 
@@ -62,12 +79,60 @@ body {
 
 .nav {
     display: flex;
+    align-items: center;
     gap: 36px;
+}
+
+.theme-toggle {
+    width: 40px;
+    height: 40px;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+
+.theme-icon-moon,
+.theme-icon-sun {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.theme-icon-moon {
+    background: var(--text);
+    box-shadow: 4px -3px 0 -1px var(--bg-card) inset;
+}
+
+.theme-icon-sun {
+    background: transparent;
+    border: 2px solid var(--text);
+    box-shadow:
+        0 -11px 0 -4px var(--text),
+        0 11px 0 -4px var(--text),
+        11px 0 0 -4px var(--text),
+        -11px 0 0 -4px var(--text);
+    display: none;
+}
+
+html[data-theme="light"] .theme-icon-moon {
+    display: none;
+}
+
+html[data-theme="light"] .theme-icon-sun {
+    display: block;
 }
 
 .nav-link {
     text-decoration: none;
-    color: var(--text-white);
+    color: var(--text);
     font-size: 0.95rem;
     font-weight: 500;
     transition: color 0.2s;
@@ -83,7 +148,7 @@ body {
     display: inline-block;
     padding: 12px 32px;
     background: var(--cyan);
-    color: var(--bg-dark);
+    color: var(--btn-fg);
     font-family: inherit;
     font-size: 0.95rem;
     font-weight: 600;
@@ -106,6 +171,7 @@ body {
     display: flex;
     align-items: center;
     padding: 120px 8% 80px;
+    background: var(--page-bg);
 }
 
 .hero-content {
@@ -172,7 +238,7 @@ body {
 
 .social-icon:hover {
     background: var(--cyan);
-    color: var(--bg-dark);
+    color: var(--btn-fg);
     box-shadow: 0 0 16px var(--cyan-glow);
 }
 
@@ -249,77 +315,7 @@ body {
     margin-top: 0;
 }
 
-/* Project cards */
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
-    margin-bottom: 16px;
-}
-
-.project-card {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    height: 220px;
-    cursor: pointer;
-    border: 1px solid var(--border);
-}
-
-.project-thumb {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.4s;
-}
-
-.project-1 {
-    background: linear-gradient(135deg, #0a1628, #1a3a5c, #0a3040);
-}
-
-.project-2 {
-    background: linear-gradient(135deg, #1a0a28, #3a1a5c, #2a1040);
-}
-
-.project-3 {
-    background: linear-gradient(135deg, #0a281a, #1a5c3a, #0a3020);
-}
-
-.project-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(11, 11, 15, 0.85);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 24px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.project-card:hover .project-overlay {
-    opacity: 1;
-}
-
-.project-card:hover .project-thumb {
-    transform: scale(1.08);
-}
-
-.project-overlay h4 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-    color: var(--cyan);
-}
-
-.project-overlay p {
-    font-size: 0.85rem;
-    color: var(--text-gray);
-}
-
-/* Service-style cards (Skills & Hobbies) */
+/* Service-style cards (Projects, Skills & Hobbies) */
 .card-row {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -332,7 +328,14 @@ body {
     border-radius: 16px;
     padding: 36px 28px;
     text-align: center;
-    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s, background 0.25s;
+}
+
+html[data-theme="light"] .service-card,
+html[data-theme="light"] .achievement-card,
+html[data-theme="light"] .contact-info-bar,
+html[data-theme="light"] .contact-form {
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
 }
 
 .service-card:hover {
@@ -383,7 +386,7 @@ body {
 
 .card-link:hover {
     background: var(--cyan);
-    color: var(--bg-dark);
+    color: var(--btn-fg);
 }
 
 /* Achievement cards */
@@ -422,19 +425,6 @@ body {
 
 .achievement-card:hover::before {
     opacity: 1;
-}
-
-.achievement-badge {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--cyan-dim);
-    border: 2px solid var(--cyan);
-    border-radius: 50%;
-    font-size: 2rem;
 }
 
 .achievement-card h4 {
@@ -483,7 +473,7 @@ body {
 }
 
 .info-item a {
-    color: var(--text-white);
+    color: var(--text);
     text-decoration: none;
     font-size: 0.92rem;
 }
@@ -533,10 +523,10 @@ body {
 .form-group textarea {
     width: 100%;
     padding: 14px 18px;
-    background: var(--bg-dark);
+    background: var(--input-bg);
     border: 1px solid var(--border);
     border-radius: 8px;
-    color: var(--text-white);
+    color: var(--text);
     font-family: inherit;
     font-size: 0.92rem;
     transition: border-color 0.2s, box-shadow 0.2s;
@@ -544,7 +534,7 @@ body {
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: #555;
+    color: var(--text-gray);
 }
 
 .form-group input:focus,
@@ -585,7 +575,7 @@ body {
     align-items: center;
     justify-content: center;
     background: var(--cyan);
-    color: var(--bg-dark);
+    color: var(--btn-fg);
     border-radius: 8px;
     text-decoration: none;
     font-size: 1.2rem;

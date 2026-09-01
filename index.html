@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+    </script>
 </head>
 
 <body>
@@ -20,6 +23,10 @@
             <a href="#home" class="nav-link active">Home</a>
             <a href="#showcase" class="nav-link">Showcase</a>
             <a href="#contact" class="nav-link">Contact</a>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to white mode">
+                <span class="theme-icon-moon" aria-hidden="true"></span>
+                <span class="theme-icon-sun" aria-hidden="true"></span>
+            </button>
         </nav>
     </header>
 
@@ -62,27 +69,21 @@
 
         <!-- Projects -->
         <h3 class="block-title">Latest <span class="cyan">Projects</span></h3>
-        <div class="project-grid">
-            <article class="project-card">
-                <div class="project-thumb project-1"></div>
-                <div class="project-overlay">
-                    <h4>Personal Portfolio</h4>
-                    <p>A responsive portfolio website built with HTML and CSS.</p>
-                </div>
+        <div class="card-row">
+            <article class="service-card">
+                <h4>Personal Portfolio</h4>
+                <p>A responsive portfolio website built with HTML and CSS.</p>
+                <a href="#contact" class="card-link">Learn More</a>
             </article>
-            <article class="project-card">
-                <div class="project-thumb project-2"></div>
-                <div class="project-overlay">
-                    <h4>Michaelshoes System</h4>
-                    <p>A shoe store management system for inventory and sales tracking.</p>
-                </div>
+            <article class="service-card">
+                <h4>Michaelshoes System</h4>
+                <p>A shoe store management system for inventory and sales tracking.</p>
+                <a href="#contact" class="card-link">Learn More</a>
             </article>
-            <article class="project-card">
-                <div class="project-thumb project-3"></div>
-                <div class="project-overlay">
-                    <h4>Purokresidence Information System</h4>
-                    <p>A community information system for managing resident records.</p>
-                </div>
+            <article class="service-card">
+                <h4>Purokresidence Information System</h4>
+                <p>A community information system for managing resident records.</p>
+                <a href="#contact" class="card-link">Learn More</a>
             </article>
         </div>
 
@@ -113,19 +114,16 @@
         <h3 class="block-title">My <span class="cyan">Hobbies</span></h3>
         <div class="card-row">
             <article class="service-card">
-                <div class="service-icon">&#127918;</div>
                 <h4>Online Gaming</h4>
                 <p>Playing online games during free time to relax and have fun with friends.</p>
                 <a href="#contact" class="card-link">Learn More</a>
             </article>
             <article class="service-card">
-                <div class="service-icon">&#127921;</div>
                 <h4>Billiard</h4>
                 <p>Enjoying billiard games that require focus, strategy, and precision.</p>
                 <a href="#contact" class="card-link">Learn More</a>
             </article>
             <article class="service-card">
-                <div class="service-icon">&#128564;</div>
                 <h4>Sleeping</h4>
                 <p>Getting enough rest to stay energized and ready for the next day.</p>
                 <a href="#contact" class="card-link">Learn More</a>
@@ -136,17 +134,14 @@
         <h3 class="block-title">My <span class="cyan">Achievements</span></h3>
         <div class="card-row achievements-row">
             <article class="achievement-card">
-                <div class="achievement-badge">&#127941;</div>
                 <h4>COVID-19 Survivor</h4>
                 <p>Overcame the global pandemic with strength, resilience, and hope for a better tomorrow.</p>
             </article>
             <article class="achievement-card">
-                <div class="achievement-badge">&#127786;</div>
                 <h4>Bagyong Yolanda Survivor</h4>
                 <p>Endured one of the strongest typhoons in history and came out stronger on the other side.</p>
             </article>
             <article class="achievement-card">
-                <div class="achievement-badge">&#127786;</div>
                 <h4>Bagyong Odette Survivor</h4>
                 <p>Survived the devastation of Typhoon Odette and continued moving forward with courage.</p>
             </article>
@@ -203,6 +198,7 @@
         <a href="#home" class="scroll-top" aria-label="Scroll to top">&#8593;</a>
     </footer>
 
+    <script src="index.js"></script>
 </body>
 
 </html>
